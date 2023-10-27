@@ -18,7 +18,7 @@ num=1
 while [ $num -eq 1 ]; do
 	echo "To infinity and beyond"
 	sleep 2
-	trap 'echo "I hate the kill command" && exit' SIGTERM
-	trap 'echo "Y U no love me?!" && exit' SIGINT
+	trap 'echo "I hate the kill command" && terminate' SIGTERM
+	trap 'echo "Y U no love me?!" && terminate' SIGINT
 	trap 'terminate' SIGQUIT || SIGTERM
 done
