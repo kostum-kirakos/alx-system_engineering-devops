@@ -12,5 +12,7 @@ do
         ((minutes++))
     done
     ((hours++))
-    echo "Hour: $hours"
+    if [ $hours != 13 ]; then
+      echo "Hour: $hours"
+    fi
 done
