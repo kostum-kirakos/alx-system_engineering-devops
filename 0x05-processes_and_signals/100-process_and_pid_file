@@ -20,5 +20,5 @@ while [ $num -eq 1 ]; do
 	sleep 2
 	trap 'echo "I hate the kill command" && exit' SIGTERM
 	trap 'echo "Y U no love me?!" && exit' SIGINT
-	trap 'terminate' SIGQUIT
+	trap 'terminate' SIGQUIT || SIGTERM
 done
