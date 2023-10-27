@@ -2,6 +2,7 @@
 # Displays the contents of the current directory in list format.
 #   Only displays the part of the name after the first dash.
 
-for file in $(ls) ; do
+list=$(ls)
+for file in $list ; do
     echo "${file#*-}"
 done
