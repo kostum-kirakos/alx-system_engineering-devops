@@ -2,4 +2,4 @@
 # Ruby script that accepts one argument
 #+and pass it to a regular expression matching method
 
-puts ARGV[0].scan(/hbtn|htn/).join
+puts ARGV[0].scan(/hb{1}?tn/).join
