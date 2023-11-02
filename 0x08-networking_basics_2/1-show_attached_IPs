@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+#Displays all IPv4 on the machine 
+
+ifconfig | grep "inet " | awk '{print $2}'
