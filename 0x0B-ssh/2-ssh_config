@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# A configuration script that connects to a server without a password.
+
