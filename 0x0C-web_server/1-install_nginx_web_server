@@ -17,7 +17,7 @@ fi
 root_dir=$(grep "root" /etc/nginx/sites-available/default | cut -d " " -f 2 | tr -d ";" | head -1)
 
 # Create the directory if it doesn't exist
-if [[ ! -d $root _dir ]]; then
+if [[ ! -d $root_dir ]]; then
 	sudo mdkir -p "$root_dir"
 fi
 
