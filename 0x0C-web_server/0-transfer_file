@@ -17,3 +17,4 @@ else
 
 	# Use scp command to transfer the file to the server
 	scp "$SSH_OPTION" -i "$PRIVATE_KEY_PATH" "$FILE_PATH" "$USERNAME@$SERVER_IP:~/"
+fi
