@@ -1,1 +1,19 @@
-to fill
+#!/usr/bin/env bash
+# A Bash script that transfers a file from our client to a server.
+
+# Check if the correct number of parameters is provided
+if [ $# -ne 4 ]
+then
+	echo "Usage: $0 PATH_TO_FILE IP USERNAME PATH_TO_SSH_KEY"
+else
+	#Set SSH options to disable strict host key checking
+	export SSH_OPTION="-o StrictHostKeyChecking=no"
+
+	# Assign parameters to variables
+	FILE_PATH="$1"
+	SERVER_IP="$2"
+	USERNAME="$3"
+	PRIVATE_KEY_PATH="$4"
+
+	# Use scp command to transfer the file to the server
+	scp "$SSH_OPTION" -i "$PRIVATE_KEY_PATH" "$FILE_PATH" "$USERNAME@$SERVER_IP:~/"
