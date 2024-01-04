@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# A script that configures the server using a redirection file
+sudo apt-get -y update
+sudo apt-get -y install nginx
+str="server_name _;\n\trewrite ^\/redirect_me https:\/\/github.com\/kostum-kirakos permanent;"
+sudo sed -i "s/server_name _;/$str/" /etc/nginx/sites-enabled/default
+sudo service nginx restart
