@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# A script that configures a new server and configure it to contain a custom header.
+# install Nginx
+apt-get -y update
+apt-get -y install nginx
+
+# start nginx
+if [[ ! $(pgrep nginx) ]]; then
+        service nginx start
+fi
+
+# allow incoming traffic on the port associated with Nginx's HTTP service.
+ufw allow  'Nginx HTTP'
+
+echo 'Hello World!, From Server2' > /var/www/html/index.nginx-debian.html
+
+# redirection
+str="server_name _;\n\trewrite ^\/redirect_me https:\/\/github.com\/kostum-kirakos permanent;"
+sudo sed -i "s/server_name _;/$str/" /etc/nginx/sites-enabled/default
+
+# custom 404 page that contains the string Ceci n'est pas une page.
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/custom_404.html > /dev/null
+sudo sed -i "s/server_name _;/&\n\terror_page 404 \/custom_404.html;/" /etc/nginx/sites-enabled/default
+
+# Configure Nginx so that its HTTP response contains a custom header
+sudo sed -i "/server_name _;/ a add_header X-Served-By $HOSTNAME;" /etc/nginx/sites-enabled/default
+
+sudo service nginx restart
