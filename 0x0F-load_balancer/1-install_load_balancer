@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# A script that configures the load balancer.
+sudo apt -y update
+sudo apt -y upgrade
+sudo apt -y install haproxy
+echo -e '
+frontend kirakos.tech\n\t
+	bind *:80\n\t
+default_backend web_servers\n\n
+	backend web_servers\n\t
+	balance roundrobin\n\t
+	server 433805-web-01 18.208.120.138:80 check\n\t
+	server 433805-web-02 54.237.53.64:80 check\n' >> /etc/haproxy/haproxy.cfg
+sudo sed -i "9i ENABLED=1" /etc/default/haproxy
+sudo service haproxy restart
