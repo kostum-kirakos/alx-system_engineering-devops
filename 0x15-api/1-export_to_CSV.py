@@ -9,7 +9,9 @@ if __name__ == "__main__":
     from sys import argv
 
     USER_ID = argv[1]
-    request = requests.get(f"https://jsonplaceholder.typicode.com/users/{USER_ID}")
+    request = requests.get(
+            f"https://jsonplaceholder.typicode.com/users/{USER_ID}"
+            )
     USERNAME = request.json()["username"]
     all_tasks = requests.get(
             f"https://jsonplaceholder.typicode.com/todos?userId={USER_ID}"
@@ -24,4 +26,3 @@ if __name__ == "__main__":
                     str(dict.get("title")),
                     ]
             writer.writerow(data)
-
